@@ -1,12 +1,12 @@
 const express = require('express');
-const { Tours, Country } = require('../db'); // Ajusta la ruta correcta hacia db.js
+const { Activities, Country } = require('../db'); // Ajusta la ruta correcta hacia db.js
 
 const router = express.Router();
 
 // Ruta GET para obtener todas las actividades turísticas
 router.get('/', async (req, res) => {
   try {
-    const activities = await Tours.findAll({
+    const activities = await Activities.findAll({
       include: Country });
       console.log(activities);
       res.json(activities);
@@ -19,15 +19,14 @@ router.get('/', async (req, res) => {
 // Ruta POST para crear una actividad turística
 router.post('/', async (req, res) => {
   try {
-    const { name, type, difficulty, durationHours, season, country } = req.body;
+    const { name, difficulty, durationHours, season, country } = req.body;
     
-    if (!name || !type || !difficulty || !durationHours || !season || !country) {
+    if (!name || !difficulty || !durationHours || !season || !country) {
       return res.status(400).json({ error: 'Missing required fields'})
     }
 
-    const activity = await Tours.create({
+    const activity = await Activities.create({
       name,
-      type,
       difficulty,
       durationHours,
       season,
@@ -37,7 +36,7 @@ router.post('/', async (req, res) => {
           name: country,
         },
       });
-      await activity.addCountries(countries);
+      await activity.setCountries(countries);
   
     res.status(201).json(activity);
   } catch (error) {

@@ -98,8 +98,9 @@ export const getCountryByName = (name) => {
 export const postActivities = (createActivity) => {
    return async (dispatch) => {
       try {
-         const response = await axios.post("http://localhost:3001/activities", createActivity);
-         dispatch({ type: POST_ACTIVITIES, payload: response.data })
+        await axios.post("http://localhost:3001/activities", createActivity);
+        alert("Has creado una nueva actividad")
+        return dispatch({ type: POST_ACTIVITIES, payload: await getAllCountries()})
       } catch (error) {
          console.log(error);
       }
@@ -110,7 +111,8 @@ export const getAllActivities = () => {
    return async (dispatch) => {
       try {
          const response = await axios.get("http://localhost:3001/countries/activities");
-         dispatch({ type: GET_ACTIVITIES, payload: response.data })
+         console.log(response);
+          return dispatch({ type: GET_ACTIVITIES, payload: response.data })
       } catch (error) {
          console.log(error);
       }

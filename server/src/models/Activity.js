@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-   sequelize.define('Tours', {
+   sequelize.define('Activities', {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
@@ -12,10 +12,10 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    type: {
-      type: DataTypes.ENUM('Aventura', 'Bienestar', 'Cultural', 'Deportivo', 'Ecoturismo', 'Gastronómico', 'Negocios', 'Playa', 'Religioso'),
-      allowNull: true,
-    },
+    // type: {
+    //   type: DataTypes.ENUM('Aventura', 'Bienestar', 'Cultural', 'Deportivo', 'Ecoturismo', 'Gastronómico', 'Negocios', 'Playa', 'Religioso'),
+    //   allowNull: true,
+    // },
     difficulty: {
       type: DataTypes.INTEGER,
       allowNull: true,

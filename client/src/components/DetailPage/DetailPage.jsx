@@ -8,7 +8,8 @@ export default function Detail() {
    const { id } = useParams();
    const dispatch = useDispatch();
    const countryDetail = useSelector(state => state.countryDetail);
-
+   const allActivities = useSelector(state => state.allActivities);
+   console.log(allActivities);
    useEffect(() => {
       dispatch(getCountryDetail(id)); //*Dismount.
       return () => dispatch(disassembleDetail()) //*Unmount.

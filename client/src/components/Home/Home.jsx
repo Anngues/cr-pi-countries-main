@@ -6,6 +6,8 @@ import Filters from '../Filters/Filters';
 import Sorting from '../Sorting/Sorting';
 import CreateActivity from '../Form/CreateActivity';
 import NavBar from '../NavBar/NavBar';
+import { postActivities } from '../../Redux/actions';
+import { useDispatch } from 'react-redux';
 
 export default function Home() {
     const [allCountries, setAllCountries] = useState([]);
@@ -17,11 +19,13 @@ export default function Home() {
     const [sortOption, setSortOption] = useState("name_asc");
     const [currentPage, setCurrentPage] = useState(1);
     const countriesPerPage = 10;
+    const dispatch = useDispatch();
 
     useEffect(() => {
         fetch('http://localhost:3001/countries')
             .then(response => response.json())
             .then(data => {
+                console.log(data);
                 setAllCountries(data);
                 setFilteredCountries(data);
                 const allContinents = [...new Set(data.map(country => country.continent))];
@@ -95,6 +99,7 @@ export default function Home() {
     };
 
     const handleCreateActivity = (activityData) => {
+        dispatch(postActivities(activityData))
         // Handle the creation of the activity, e.g., sending a POST request
         console.log("Creating activity:", activityData);
     };

@@ -1,6 +1,6 @@
 const express = require('express');
 const { Op } = require('sequelize');
-const { Country, Activity } = require('../db.js'); // Ajusta la ruta correcta hacia db.js
+const { Country, Activities } = require('../db.js'); // Ajusta la ruta correcta hacia db.js
 
 const router = express.Router();
 
@@ -17,7 +17,7 @@ router.get('/name', async (req, res) => {
               
             }
           },
-          include: Activity
+          include: Activities
         });
         if(countries.length === 0){
         res.status(404).send({ 'msg': 'No existe' })
@@ -36,7 +36,7 @@ router.get('/name', async (req, res) => {
 router.get('/', async (req, res) => {
   try {
     const countries = await Country.findAll({
-      include: Activity,
+      include: Activities,
     });
     res.json(countries);
   } catch (error) {
@@ -48,7 +48,7 @@ router.get('/', async (req, res) => {
 router.get('/:idPais', async (req, res) => {
   try {
     const country = await Country.findByPk(req.params.idPais, {
-      include: Activity,
+      include: Activities,
     });
     if (country) {
       res.json(country);

@@ -37,7 +37,7 @@ router.post('/', async (req, res) => {
         },
       });
       await activity.setCountries(countries);
-  
+      console.log(activity);
     res.status(201).json(activity);
   } catch (error) {
     res.status(500).json({ error: error.message });

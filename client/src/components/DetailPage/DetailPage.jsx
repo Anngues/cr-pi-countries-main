@@ -39,6 +39,23 @@ export default function Detail() {
                <h2>{countryDetail.population}</h2>
             </div>
          </div>
+         <div>
+            <h4>Activities</h4>
+            {countryDetail.Activities && countryDetail.Activities.length > 0 ? (
+               <ul>
+                  {countryDetail.Activities.map(activity => (
+                     <li key={activity.id}>
+                        <strong>Name:</strong> {activity.name}<br />
+                        <strong>Difficulty:</strong> {activity.difficulty}<br />
+                        <strong>Duration:</strong> {activity.durationHours} hours<br />
+                        <strong>Season:</strong> {activity.season}<br />
+                     </li>
+                  ))}
+               </ul>
+            ) : (
+               <p>No activities available for this country.</p>
+            )}
+         </div>
          <div className={style.buttonContainer}>
             <button className={style.backButton}>
                <Link to='/home'>Back</Link>

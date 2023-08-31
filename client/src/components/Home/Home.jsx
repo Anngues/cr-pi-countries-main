@@ -1,59 +1,65 @@
 import React, { useState, useEffect } from 'react';
-import style from "./Home.module.css";
-import Card from '../Card/Card';
-import SearchBar from '../SearchBar/SearchBar';
-import Filters from '../Filters/Filters';
-import Sorting from '../Sorting/Sorting';
-import CreateActivity from '../Form/CreateActivity';
-import NavBar from '../NavBar/NavBar';
-import { postActivities } from '../../Redux/actions';
-import { useDispatch } from 'react-redux';
-
+import style from "./Home.module.css";                          
+import Card from '../Card/Card';                                
+import SearchBar from '../SearchBar/SearchBar';                 
+import Filters from '../Filters/Filters';                       
+import Sorting from '../Sorting/Sorting';                       
+import CreateActivity from '../Form/CreateActivity'; 
+import NavBar from '../NavBar/NavBar'; 
+import { postActivities } from '../../Redux/actions'; 
+import { useDispatch } from 'react-redux';                                         
 export default function Home() {
+    
     const [allCountries, setAllCountries] = useState([]);
     const [filteredCountries, setFilteredCountries] = useState([]);
-    const [continents, setContinents] = useState([]);
+    const [continents, setContinents] = useState([]); 
     const [activities, setActivities] = useState([]);
-    const [selectedContinent, setSelectedContinent] = useState("");
-    const [selectedActivity, setSelectedActivity] = useState("");
-    const [sortOption, setSortOption] = useState("name_asc");
-    const [currentPage, setCurrentPage] = useState(1);
-    const countriesPerPage = 10;
-    const dispatch = useDispatch();
+    const [selectedContinent, setSelectedContinent] = useState(""); 
+    const [selectedActivity, setSelectedActivity] = useState(""); 
+    const [sortOption, setSortOption] = useState("name_asc"); 
+    const [currentPage, setCurrentPage] = useState(1); 
+    const countriesPerPage = 10; 
+    const dispatch = useDispatch(); 
 
+    
     useEffect(() => {
+        
         fetch('http://localhost:3001/countries')
-            .then(response => response.json())
+            .then(response => response.json()) 
             .then(data => {
-                console.log(data);
+                console.log(data); 
                 setAllCountries(data);
-                setFilteredCountries(data);
+                setFilteredCountries(data); 
                 const allContinents = [...new Set(data.map(country => country.continent))];
-                setContinents(allContinents);
+                setContinents(allContinents); 
                 const allActivities = [...new Set(data.flatMap(country => country.activities))];
-                setActivities(allActivities);
+                setActivities(allActivities); 
             })
             .catch(error => console.error('Error fetching countries:', error));
-    }, []);
+    }, []); 
 
+    // Manejar la búsqueda de países por nombre
     const handleSearch = (searchTerm) => {
         const filtered = allCountries.filter(country =>
             country.name.toLowerCase().includes(searchTerm.toLowerCase())
         );
-        setFilteredCountries(filtered);
+        setFilteredCountries(filtered); 
         setCurrentPage(1);
     };
 
+    // Manejar el filtro por continente
     const handleContinentFilter = (event) => {
         setSelectedContinent(event.target.value);
         applyFilters(event.target.value, selectedActivity);
     };
 
+    // Manejar el filtro por actividad
     const handleActivityFilter = (event) => {
         setSelectedActivity(event.target.value);
         applyFilters(selectedContinent, event.target.value);
     };
 
+    // Aplicar filtros a los países según continente y actividad
     const applyFilters = (continent, activity) => {
         let filtered = allCountries;
 
@@ -65,15 +71,17 @@ export default function Home() {
             filtered = filtered.filter(country => country.activities.includes(activity));
         }
 
-        setFilteredCountries(filtered);
+        setFilteredCountries(filtered); 
         setCurrentPage(1);
     };
 
+    // Manejar el cambio de opción de ordenamiento
     const handleSort = (event) => {
         setSortOption(event.target.value);
         applySort(event.target.value);
     };
 
+    // Aplicar el ordenamiento a los países según la opción seleccionada
     const applySort = (option) => {
         let sorted = [...filteredCountries];
 
@@ -94,24 +102,21 @@ export default function Home() {
                 break;
         }
 
-        setFilteredCountries(sorted);
-        setCurrentPage(1);
+        setFilteredCountries(sorted); 
+        setCurrentPage(1); 
     };
 
-    const handleCreateActivity = (activityData) => {
-        dispatch(postActivities(activityData))
-        // Handle the creation of the activity, e.g., sending a POST request
-        console.log("Creating activity:", activityData);
-    };
-
+    // Cálculo de índices para paginación
     const indexOfLastCountry = currentPage * countriesPerPage;
     const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
     const currentCountries = filteredCountries.slice(indexOfFirstCountry, indexOfLastCountry);
     const totalPages = Math.ceil(filteredCountries.length / countriesPerPage);
 
+    
     return (
         <div className={style.homeContainer}>
             <h1> COUNTRIES </h1>
+            <NavBar/>
             <SearchBar handleSearch={handleSearch} />
             <Filters
                 continents={continents}
@@ -122,7 +127,7 @@ export default function Home() {
             <Sorting handleSort={handleSort} />
             <CreateActivity
                 countries={allCountries}
-                handleCreateActivity={handleCreateActivity}
+                // handleCreateActivity={handleCreateActivity}
             />
             <div className={style.cardContainer}>
                 {currentCountries.map(country => (
@@ -145,12 +150,13 @@ export default function Home() {
                 </button>
                 <span>Página {currentPage} de {totalPages}</span>
                 <button
-                    onClick={() => setCurrentPage(currentPage + 1)}
-                    disabled={currentPage === totalPages}
-                >
-                    Siguiente
-                </button>
-            </div>
-        </div>
+                onClick={() => setCurrentPage(currentPage + 1)}
+                disabled={currentPage === totalPages}
+             >
+            Siguiente
+             </button>
+             </div>
+         </div>
     );
-}
+ }
+                    

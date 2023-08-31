@@ -1,21 +1,33 @@
-.container {
+/* Filters.module.css */
+
+.filtersContainer {
     display: flex;
-    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    /* Opcional: Alinea verticalmente los elementos */
+    margin-bottom: 20px;
 }
 
-.container h4 {
-    margin: 0;
-    padding: 10px;
+.filter {
+    display: flex;
+    align-items: center;
 }
 
-.container select {
-    margin: 0;
-    padding: 10px;
-    margin-right: 4px;
-    border-radius: 12px;
-    background-color: #2a68ff;
-    color: white;
-    border: 0;
+.label {
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+
+.select option {
+    background-color: #fff;
+    color: #333;
 }

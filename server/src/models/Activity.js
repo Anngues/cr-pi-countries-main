@@ -12,10 +12,6 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    // type: {
-    //   type: DataTypes.ENUM('Aventura', 'Bienestar', 'Cultural', 'Deportivo', 'Ecoturismo', 'Gastronómico', 'Negocios', 'Playa', 'Religioso'),
-    //   allowNull: true,
-    // },
     difficulty: {
       type: DataTypes.INTEGER,
       allowNull: true,
@@ -29,7 +25,7 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
     season: {
-      type: DataTypes.ENUM('Primavera', 'Verano', 'Otoño', 'Invierno','primavera', 'verano', 'otoño', 'invierno'," no season"),
+      type: DataTypes.ENUM('Spring', 'Summer', 'Autumn', 'Winter'),
       allowNull: true,
     },
   }, {

@@ -1,52 +1,51 @@
 /* Form.module.css */
 
 .createActivityContainer {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f7f7f7;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .createActivityContainer h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .createActivityContainer form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .createActivityContainer label {
-    font-size: 16px;
-    margin-bottom: 5px;
-  }
-  
-  .createActivityContainer input,
-  .createActivityContainer select {
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .createActivityContainer select {
-    appearance: none;
-  }
-  
-  .createActivityContainer button {
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .createActivityContainer button:hover {
-    background-color: #0056b3;
-  }
-  
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f7f7f7;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.createActivityContainer h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.createActivityContainer form {
+  display: flex;
+  flex-direction: column;
+}
+
+.createActivityContainer label {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.createActivityContainer input,
+.createActivityContainer select {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.createActivityContainer select {
+  appearance: none;
+}
+
+.createActivityContainer button {
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.createActivityContainer button:hover {
+  background-color: #0056b3;
+}

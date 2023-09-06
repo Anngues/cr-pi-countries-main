@@ -6,7 +6,7 @@ import SearchBar from '../SearchBar/SearchBar'
 export default function NavBar() {
    return (
       <div className={style.container}>
-         <SearchBar />
+         {/* <SearchBar /> */}
          
          <button>
             <Link to={'/forms'}>Create Activity</Link>

@@ -13,17 +13,17 @@ export default function SearchBar({ handleSearch }) {
         handleSearch(searchTerm);
     };
 
-    // return (
-    //     <div className={style.searchContainer}>
-    //         <form onSubmit={handleSubmit}>
-    //             <input
-    //                 type="text"
-    //                 placeholder="Search countries..."
-    //                 value={searchTerm}
-    //                 onChange={handleChange}
-    //             />
-    //             <button type="submit">Search</button>
-    //         </form>
-    //     </div>
-    // );
+    return (
+        <div className={style.searchContainer}>
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    placeholder="Search countries..."
+                    value={searchTerm}
+                    onChange={handleChange}
+                />
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    );
 }

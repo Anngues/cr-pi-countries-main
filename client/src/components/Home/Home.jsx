@@ -138,6 +138,7 @@ export default function Home() {
                         image={country.image}
                         continent={country.continent}
                         population={country.population ? country.population : 'No data'}
+                        capital={country.capital}
                     />
                 ))}
             </div>
